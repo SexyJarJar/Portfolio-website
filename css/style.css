@@ -539,6 +539,18 @@ footer {
         transition: transform var(--transition);
     }
 
+    .navbar .logo {
+        font-size: 1.1rem;
+        white-space: normal; /* allow wrapping */
+        line-height: 1.2;
+        max-width: 70vw; /* prevent overflow */
+    }
+    .logo-sub {
+        font-size: 0.85em;
+        font-weight: 500;
+        color: var(--text);
+    }
+
         .navbar .nav-links.active {
             transform: translateX(0);
         }
