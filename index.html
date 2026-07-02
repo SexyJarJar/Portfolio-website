@@ -4,34 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alfred Johansson | Game Designer &amp; Developer</title>
+    <meta name="description" content="Alfred Johansson, game designer and developer. I design player facing systems and gameplay, then build and polish them in Unity." />
 
-    <!-- Fonts (optional) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
           rel="stylesheet" />
 
     <link rel="stylesheet" href="css/style.css" />
-
-    <!-- Minimal icon CSS. You can move this into style.css -->
-    <style>
-        .icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor; /* icon uses the same color as the text */
-            vertical-align: -0.15em;
-            margin-right: 0.45rem;
-            flex: 0 0 auto;
-        }
-
-        /* Optional: keep link content aligned when icon + text */
-        .project-links a,
-        .contact-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0; /* margin handled by .icon */
-        }
-    </style>
 </head>
 
 <body>
@@ -39,13 +19,11 @@
     <svg xmlns="http://www.w3.org/2000/svg"
          style="position:absolute;width:0;height:0;overflow:hidden"
          aria-hidden="true">
-        <!-- External link -->
         <symbol id="icon-external" viewBox="0 0 16 16">
             <path d="M16 1v5h-1V2.707l-7.146 7.147-.708-.708L14.293 2H11V1h5z" />
             <path d="M2 3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7h-1v7H2V4h7V3H2z" />
         </symbol>
 
-        <!-- GitHub -->
         <symbol id="icon-github" viewBox="0 0 16 16">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
@@ -61,24 +39,17 @@
                c0-4.42-3.58-8-8-8z" />
         </symbol>
 
-
-        <!-- LinkedIn -->
         <symbol id="icon-linkedin" viewBox="0 0 24 24">
-            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5
-           2.5 2.5 0 0 1 0-5z" />
+            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z" />
             <path d="M3 9h4v12H3z" />
-            <path d="M9 9h4v1.7c.6-1 1.7-2 3.6-2
-           3.8 0 4.4 2.5 4.4 5.7V21h-4v-6.1
-           c0-1.5 0-3.4-2.1-3.4
-           -2.1 0-2.4 1.6-2.4 3.3V21H9z" />
+            <path d="M9 9h4v1.7c.6-1 1.7-2 3.6-2 3.8 0 4.4 2.5 4.4 5.7V21h-4v-6.1
+                   c0-1.5 0-3.4-2.1-3.4-2.1 0-2.4 1.6-2.4 3.3V21H9z" />
         </symbol>
 
-        <!-- Mail (outline icon) -->
         <symbol id="icon-mail" viewBox="0 0 24 24">
             <rect x="3" y="5" width="18" height="14" rx="2"></rect>
             <path d="M3 7l9 6 9-6"></path>
         </symbol>
-
     </svg>
 
     <header class="navbar">
@@ -87,8 +58,6 @@
                 <span class="logo-name">Alfred Johansson</span>
                 <span class="logo-sub">Game Designer &amp; Developer</span>
             </a>
-
-
 
             <button class="menu-toggle"
                     id="mobile-menu"
@@ -101,10 +70,10 @@
 
             <nav aria-label="Primary navigation">
                 <ul class="nav-links" id="nav-links">
+                    <li><a href="#strengths">Strengths</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#resume">Resume</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -113,35 +82,70 @@
 
     <main>
         <section id="hero" class="hero">
+            <!-- Small glow that trails the cursor in the dark background -->
+            <div id="hero-glow" class="hero-glow" aria-hidden="true"></div>
+
             <div class="container hero-content">
-                <h1>Hello, I’m <span class="highlight">Alfred Johansson</span></h1>
-                <p>Game designer &amp; developer — I design systems and player experiences, then build them in Unity.</p>
+                <span class="hero-eyebrow">Game Designer &amp; Developer</span>
+                <h1>Hi, I'm <span class="highlight">Alfred Johansson</span></h1>
+                <p>I design player facing systems and gameplay, then build and polish them in Unity. I do my best work leading small teams to ship finished games.</p>
 
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn">Projects</a>
+                    <a href="#projects" class="btn">View projects</a>
                     <a href="#resume" class="btn-outline">Resume</a>
                 </div>
             </div>
 
-            <!-- Canvas overlay for the shooting stars. It is scoped to the hero
-             so stars only appear over the hero background. -->
+            <!-- Subtle interactive star layer, scoped to the hero -->
             <canvas id="star-canvas"></canvas>
-
-            <!-- Star collection counter. This sits inside the hero so it only
-             appears when the hero is in view. -->
             <div id="star-counter" class="star-counter">
                 Stars collected: <span id="star-count-value">0</span>
             </div>
         </section>
 
+        <section id="strengths" class="strengths">
+            <div class="container">
+                <div class="section-head">
+                    <span class="kicker">What I bring</span>
+                    <h2>Strengths</h2>
+                    <p class="section-subtitle">Four things I am reliably good at, drawn from shipped games and real studio work.</p>
+                </div>
 
+                <div class="strength-grid">
+                    <article class="strength-card reveal">
+                        <div class="strength-index">01</div>
+                        <h3>Systems &amp; Gameplay Design</h3>
+                        <p>I design the systems players actually feel, from climbing and finisher moves to cameras and game feel, then build them in Unity with C#.</p>
+                    </article>
+
+                    <article class="strength-card reveal">
+                        <div class="strength-index">02</div>
+                        <h3>Team Leadership</h3>
+                        <p>I have led teams of 11 and 12 as CTO and team lead. I set the workflow, keep modules integration ready and run sync meetings so people ship.</p>
+                    </article>
+
+                    <article class="strength-card reveal">
+                        <div class="strength-index">03</div>
+                        <h3>Technical Art &amp; Polish</h3>
+                        <p>Lighting, sound, animation timing, cinematic cameras and post production. I make hits land and moments feel good.</p>
+                    </article>
+
+                    <article class="strength-card reveal">
+                        <div class="strength-index">04</div>
+                        <h3>QA &amp; Playtesting</h3>
+                        <p>Structured bug reproduction and clear, actionable feedback. I log, tag and communicate issues so leads can act on them fast.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
         <section id="projects" class="projects">
             <div class="container">
-                <h2>Projects</h2>
-                <p class="section-subtitle">
-                    Selected projects — links go to Steam, playable builds and source.
-                </p>
+                <div class="section-head">
+                    <span class="kicker">Selected work</span>
+                    <h2>Projects</h2>
+                    <p class="section-subtitle">Hover any card for the focus, tools and screenshots. Links go to Steam, playable builds and source.</p>
+                </div>
 
                 <div class="project-grid">
                     <article class="project-card project-card--featured">
@@ -149,14 +153,12 @@
                         <div class="project-info">
                             <h3>Murmurs of The Mist</h3>
                             <p>
-                                <b> Role:</b>
-                                Lead designer &amp; programmer (CTO) on an 11-person team — shipped to Steam with 25,000+ claimed copies. Designed gameplay, levels, narrative and UX/UI, and owned the Unity/Perforce setup, cameras and player systems.
+                                <span class="role-label">Role:</span>
+                                Lead designer and programmer (CTO) on an 11 person team. Shipped to Steam with 25,000+ claimed copies. Designed gameplay, levels, narrative and UX/UI, and owned the Unity and Perforce setup, cameras and player systems.
                             </p>
                             <div class="project-links">
                                 <a href="https://store.steampowered.com/app/4187020/Murmurs_of_the_Mist/" target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use href="#icon-external" xlink:href="#icon-external"></use>
-                                    </svg>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-external" xlink:href="#icon-external"></use></svg>
                                     Play for free on Steam
                                 </a>
                             </div>
@@ -164,8 +166,8 @@
                         <aside class="project-popover" aria-label="Murmurs of The Mist details">
                             <h4>Murmurs of the Mist</h4>
                             <p>
-                                In this game, you’ll encounter puzzles which require you to use your environment in order to solve them. Take note of every detail, they can help you in uncovering Sofia’s story.
-                                <b>25,000+ claimed copies on Steam!</b>
+                                A co-op puzzle game where you use the environment to solve each room. Take note of every detail, they help you uncover Sofia's story.
+                                <b>25,000+ claimed copies on Steam.</b>
                             </p>
                             <div class="project-popover__images">
                                 <img src="assets/images/MurmursPushbox.jpg" alt="Murmurs of The Mist close-up screenshot" />
@@ -173,8 +175,8 @@
                                 <img src="assets/images/MurmursClassroom.jpg" alt="Murmurs of The Mist cooperative play screenshot" />
                             </div>
                             <ul class="project-popover__details">
-                                <li>Focus: Gameplay, UX/UI, Camera, Climbing mechanic, Animation timing and trigger, Music production, Post production, Unity configuration, and cinematic cameras.</li>
-                                <li>Tools: Unity, C#, Perforce</li>
+                                <li><b>Focus:</b> gameplay, UX/UI, camera, climbing mechanic, animation timing and triggers, music production, post production, Unity configuration and cinematic cameras.</li>
+                                <li><b>Tools:</b> Unity, C#, Perforce.</li>
                             </ul>
                         </aside>
                     </article>
@@ -184,8 +186,8 @@
                         <div class="project-info">
                             <h3>Pizza to Hell</h3>
                             <p>
-                                <b> Role:</b>
-                                Team lead &amp; designer (arbetsledare) of a 12-person team — I lead the game’s design direction and built the finisher-move system from scratch (combat → finisher state). Also handle technical art in Unity: lighting, sound, animation and finisher cameras.
+                                <span class="role-label">Role:</span>
+                                Team lead and designer of a 12 person team. I lead the design direction and built the finisher move system from scratch, taking combat into a dedicated finisher state. I also handle technical art in Unity: lighting, sound, animation and finisher cameras.
                             </p>
                             <div class="project-links">
                                 <span class="project-status">Vertical slice · in development</span>
@@ -194,14 +196,14 @@
                         <aside class="project-popover" aria-label="Pizza to Hell details">
                             <h4>Pizza to Hell</h4>
                             <p>
-                                A PSX-style action roguelite: you’re a pizza delivery man fighting through a saturated, sin-themed underworld to deliver a pizza to the Devil. Posture-based combat staggers enemies for a finisher, with pizza-“topping” build variety, a combo-streak multi-hit system, and Slay the Spire-style room-to-room runs.
+                                A PSX style action roguelite. You are a pizza delivery man fighting through a sin themed underworld to deliver a pizza to the Devil. Posture based combat staggers enemies for a finisher, with pizza topping build variety, a combo streak multi hit system and room to room runs.
                             </p>
                             <div class="project-popover__images project-popover__images--single">
                                 <img src="assets/images/PizzaToHell_gameplay.gif" alt="Pizza to Hell gameplay" />
                             </div>
                             <ul class="project-popover__details">
-                                <li>Focus: Team lead &amp; workflow, finisher-move system (combat → finisher state) built from scratch, technical art (lighting, sound, animation), finisher cameras, and animation-event footstep audio.</li>
-                                <li>Tools: Unity, C#, animation events.</li>
+                                <li><b>Focus:</b> team lead and workflow, finisher move system built from scratch, technical art (lighting, sound, animation), finisher cameras and animation event footstep audio.</li>
+                                <li><b>Tools:</b> Unity, C#, animation events.</li>
                             </ul>
                         </aside>
                     </article>
@@ -211,30 +213,27 @@
                         <div class="project-info">
                             <h3>FreakThrow</h3>
                             <p>
-                                <b> Role:</b> Lead designer &amp; programmer — designed the aiming &amp; throwing mechanic; animation implementation and Unity configuration.
+                                <span class="role-label">Role:</span>
+                                Lead designer and programmer. Designed the aiming and throwing mechanic, plus animation implementation and Unity configuration.
                             </p>
                             <div class="project-links">
                                 <a href="https://github.com/alfredJoehandsome/FreakThrow" target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use href="#icon-github" xlink:href="#icon-github"></use>
-                                    </svg>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-github" xlink:href="#icon-github"></use></svg>
                                     View on GitHub
                                 </a>
                             </div>
                         </div>
                         <aside class="project-popover" aria-label="FreakThrow details">
                             <h4>FreakThrow</h4>
-                            <p>
-                                Vertical-slice project — a horror carnival game with ramping intensity.
-                            </p>
+                            <p>A vertical slice project. A horror carnival game with ramping intensity.</p>
                             <div class="project-popover__images">
                                 <img src="assets/images/FreakThrowLVL1.png" alt="FreakThrow picture1" />
                                 <img src="assets/images/FreakThrowLVL2.png" alt="FreakThrow picture2" />
                                 <img src="assets/images/FreakThrowLVL3.png" alt="FreakThrow picture3" />
                             </div>
                             <ul class="project-popover__details">
-                                <li>Focus: Gameplay, visuals, Unity configuration.</li>
-                                <li>Tools: Unity, C#, Perforce.</li>
+                                <li><b>Focus:</b> gameplay, visuals, Unity configuration.</li>
+                                <li><b>Tools:</b> Unity, C#, Perforce.</li>
                             </ul>
                         </aside>
                     </article>
@@ -244,31 +243,27 @@
                         <div class="project-info">
                             <h3>Mr.Sardin</h3>
                             <p>
-                                <b> Role:</b>
-                                Lead designer &amp; programmer — designed player movement, several traps and animation cues.
+                                <span class="role-label">Role:</span>
+                                Lead designer and programmer. Designed player movement, several traps and animation cues.
                             </p>
                             <div class="project-links">
                                 <a href="https://github.com/alfredJoehandsome/Mr.Sardin" target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use href="#icon-github" xlink:href="#icon-github"></use>
-                                    </svg>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-github" xlink:href="#icon-github"></use></svg>
                                     View on GitHub
                                 </a>
                             </div>
                         </div>
                         <aside class="project-popover" aria-label="Mr.Sardin details">
                             <h4>Mr.Sardin</h4>
-                            <p>
-                                Fast-paced parkour platformer, get to the end before time runs out. Comedic art + narrative.
-                            </p>
+                            <p>A fast paced parkour platformer. Get to the end before time runs out, with comedic art and narrative.</p>
                             <div class="project-popover__images">
                                 <img src="assets/images/MrSardin1.png" alt="MrSardin1" />
                                 <img src="assets/images/MrSardin2.png" alt="MrSardin2" />
                                 <img src="assets/images/MrSardin3.png" alt="MrSardin3" />
                             </div>
                             <ul class="project-popover__details">
-                                <li>Focus: Player movement and animation, music production, Unity configuration, parallax background.</li>
-                                <li>Tools: Unity, C#, Perforce.</li>
+                                <li><b>Focus:</b> player movement and animation, music production, Unity configuration, parallax background.</li>
+                                <li><b>Tools:</b> Unity, C#, Perforce.</li>
                             </ul>
                         </aside>
                     </article>
@@ -278,30 +273,27 @@
                         <div class="project-info">
                             <h3>Klara</h3>
                             <p>
-                                <b> Role:</b> UX designer &amp; programmer — designed enemy behaviour and the sound-detection system; also music production.
+                                <span class="role-label">Role:</span>
+                                UX designer and programmer. Designed enemy behaviour and the sound detection system, plus music production.
                             </p>
                             <div class="project-links">
                                 <a href="https://github.com/alfredJoehandsome/Klara" target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use href="#icon-github" xlink:href="#icon-github"></use>
-                                    </svg>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-github" xlink:href="#icon-github"></use></svg>
                                     View on GitHub
                                 </a>
                             </div>
                         </div>
                         <aside class="project-popover" aria-label="Klara details">
                             <h4>Klara</h4>
-                            <p>
-                                Game-jam project — a 2.5D DOOM-inspired horror game. Find the key and escape the dungeon, but don't make too much noise.
-                            </p>
+                            <p>A game jam project. A 2.5D DOOM inspired horror game. Find the key and escape the dungeon, but do not make too much noise.</p>
                             <div class="project-popover__images">
                                 <img src="assets/images/Klara screenshot1.png" alt="Klara screenshot1" />
                                 <img src="assets/images/Klara screenshot2.png" alt="Klara screenshot2" />
                                 <img src="assets/images/Klara screenshot3.png" alt="Klara screenshot3" />
                             </div>
                             <ul class="project-popover__details">
-                                <li>Focus: Monster behaviour, noise-detection system.</li>
-                                <li>Tools: Unity, C#, GitHub.</li>
+                                <li><b>Focus:</b> monster behaviour, noise detection system.</li>
+                                <li><b>Tools:</b> Unity, C#, GitHub.</li>
                             </ul>
                         </aside>
                     </article>
@@ -311,30 +303,27 @@
                         <div class="project-info">
                             <h3>Astronova</h3>
                             <p>
-                                <b> Role:</b> Designer &amp; programmer — design and post-production (screen shake, feedback, music).
+                                <span class="role-label">Role:</span>
+                                Designer and programmer. Handled design and post production, including screen shake, feedback and music.
                             </p>
                             <div class="project-links">
                                 <a href="https://github.com/alfredJoehandsome/Astronova" target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use href="#icon-github" xlink:href="#icon-github"></use>
-                                    </svg>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-github" xlink:href="#icon-github"></use></svg>
                                     View on GitHub
                                 </a>
                             </div>
                         </div>
                         <aside class="project-popover" aria-label="Astronova details">
                             <h4>Astronova</h4>
-                            <p>
-                                A Space Invaders-inspired arcade shooter built around game feel — screen shake, punchy feedback and music that make every hit land.
-                            </p>
+                            <p>A Space Invaders inspired arcade shooter built around game feel. Screen shake, punchy feedback and music make every hit land.</p>
                             <div class="project-popover__images">
                                 <img src="assets/images/AstronovaGame.png" alt="Astronova picture1" />
                                 <img src="assets/images/AstronovaDeath.png" alt="Astronova picture2" />
                                 <img src="assets/images/AstronovaBossBattle.png" alt="Astronova picture3" />
                             </div>
                             <ul class="project-popover__details">
-                                <li>Focus: Post-production, screen shake, damage feedback, music production.</li>
-                                <li>Tools: Unity, C#, Apple GarageBand, GitHub.</li>
+                                <li><b>Focus:</b> post production, screen shake, damage feedback, music production.</li>
+                                <li><b>Tools:</b> Unity, C#, Apple GarageBand, GitHub.</li>
                             </ul>
                         </aside>
                     </article>
@@ -345,17 +334,17 @@
         <section id="about" class="about">
             <div class="container">
                 <div class="about-layout">
+                    <div class="about-portrait">
+                        <img src="assets/images/Picture of me.png" alt="Portrait of Alfred Johansson" />
+                    </div>
                     <div class="about-content">
                         <h2>About me</h2>
                         <p>
-                            I build games across design and programming, and I like owning systems end-to-end — gameplay, cameras, polish and iteration. I do my best work in driven teams and care about shipping finished, self-contained results.
-
-                            I’m currently a QA intern at a Stockholm studio, learning how production works inside a real studio while continuing to design and build my own games. I’m finishing my BSc in Media Technology with a focus on game development.
+                            I build games across design and programming, and I like owning systems end to end: gameplay, cameras, polish and iteration. I do my best work in driven teams and care about shipping finished, self contained results.
                         </p>
-                    </div>
-                    <div class="about-portrait">
-                        <!-- Add your portrait photo to assets/images/about-portrait.jpg -->
-                        <img src="assets/images/Picture of me.png" alt="Portrait of Alfred Johansson" />
+                        <p>
+                            I am currently a QA intern at a Stockholm studio, learning how production works inside a real studio while continuing to design and build my own games. I am finishing my BSc in Media Technology with a focus on game development.
+                        </p>
                     </div>
                 </div>
 
@@ -366,9 +355,10 @@
                             <li>Unity</li>
                             <li>C#</li>
                             <li>Perforce / P4V</li>
-                            <li>GitHub</li>
+                            <li>Git &amp; GitHub</li>
                             <li>Figma</li>
                             <li>OBS</li>
+                            <li>Trello</li>
                             <li>Google Sheets</li>
                         </ul>
                     </div>
@@ -378,7 +368,6 @@
                         <ul>
                             <li>Quality assurance</li>
                             <li>Playtesting / bug reproduction</li>
-                            <li>Teamwork</li>
                             <li>Creative problem solving</li>
                             <li>Team leadership</li>
                             <li>Team collaboration</li>
@@ -387,29 +376,33 @@
                         </ul>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section id="experience" class="experience">
             <div class="container">
-                <h2>Experience</h2>
-                <p class="section-subtitle">Where I’ve worked and what I focused on.</p>
+                <div class="section-head">
+                    <span class="kicker">Track record</span>
+                    <h2>Experience</h2>
+                    <p class="section-subtitle">Where I have worked and what I focused on.</p>
+                </div>
 
                 <div class="exp-list">
                     <article class="exp-item exp-item--current">
                         <div class="exp-period">
-                            <span class="exp-dates">Jun 2026 – Present</span>
+                            <span class="exp-dates">Jun 2026 to Present</span>
                             <span class="exp-place">Stockholm</span>
                             <span class="exp-badge">Current</span>
                         </div>
                         <div class="exp-body">
                             <h3>QA / Playtest Intern <span class="exp-company">· Odd Raven Studios</span></h3>
                             <p>
-                                Quality assurance on an unreleased title produced under a publisher in collaboration with several studios (under NDA), where Odd Raven owns the game’s functionality and gameplay.
+                                Quality assurance on an unreleased title produced under a publisher in collaboration with several studios (under NDA), where Odd Raven owns the game's functionality and gameplay.
                             </p>
                             <ul class="exp-points">
-                                <li>Logged 67 bugs and level-design issues in 3 weeks — including a dialogue soft-lock — by recording playtests (OBS + face cam) across controller and keyboard/mouse.</li>
+                                <li>Logged 67 bugs and level design issues in 3 weeks, including a dialogue soft lock, by recording playtests (OBS plus face cam) across controller and keyboard/mouse.</li>
                                 <li>Wrote 32 feedback notes with fixes and moved bug reporting into a tagged, filterable Google Sheet so leads could create tasks directly.</li>
-                                <li>Ramped onto an unannounced NDA title in days by self-onboarding a new version-control system, naming conventions and the correct Unity version from the studio wiki.</li>
+                                <li>Ramped onto an unannounced NDA title in days by self onboarding a new version control system, naming conventions and the correct Unity version from the studio wiki.</li>
                             </ul>
                             <ul class="exp-tags">
                                 <li>Unity</li>
@@ -425,17 +418,17 @@
 
                     <article class="exp-item">
                         <div class="exp-period">
-                            <span class="exp-dates">2025 – 2026</span>
+                            <span class="exp-dates">2025 to 2026</span>
                             <span class="exp-place">Södertörn</span>
                         </div>
                         <div class="exp-body">
                             <h3>Vice President <span class="exp-company">· LVL Student Association</span></h3>
                             <p>
-                                Led operations and external communication for Södertörn University’s game-development student association.
+                                Led operations and external communication for Södertörn University's game development student association.
                             </p>
                             <ul class="exp-points">
-                                <li>Coordinated 15+ events and gatherings for the association, leading the team and owning external-partner communication.</li>
-                                <li>Introduced ~30 students to game development by designing and leading a hands-on workshop.</li>
+                                <li>Coordinated 15+ events and gatherings for the association, leading the team and owning external partner communication.</li>
+                                <li>Introduced around 30 students to game development by designing and leading a hands on workshop.</li>
                             </ul>
                             <ul class="exp-tags">
                                 <li>Leadership</li>
@@ -447,7 +440,7 @@
 
                     <article class="exp-item">
                         <div class="exp-period">
-                            <span class="exp-dates">2021 – 2023</span>
+                            <span class="exp-dates">2021 to 2023</span>
                             <span class="exp-place">Remote</span>
                         </div>
                         <div class="exp-body">
@@ -471,12 +464,13 @@
 
         <section id="resume" class="resume">
             <div class="container">
-                <h2>Resume</h2>
-                <p>Download or view the PDF.</p>
-                <a class="btn" href="assets/Resume.pdf" target="_blank" rel="noopener noreferrer">
-                    <svg class="icon" aria-hidden="true">
-                        <use href="#icon-external" xlink:href="#icon-external"></use>
-                    </svg>
+                <div class="section-head">
+                    <span class="kicker">One page</span>
+                    <h2>Resume</h2>
+                    <p>Prefer the short version? Download or view the PDF.</p>
+                </div>
+                <a class="btn-outline" href="assets/Resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-external" xlink:href="#icon-external"></use></svg>
                     View PDF
                 </a>
             </div>
@@ -484,45 +478,36 @@
 
         <section id="contact" class="contact">
             <div class="container">
-                <h2>Contact</h2>
-                <p>I’m open to junior roles in game design, development and QA. Feel free to reach out — I’d love to connect.</p>
+                <div class="section-head">
+                    <span class="kicker">Get in touch</span>
+                    <h2>Contact</h2>
+                    <p>I am open to junior roles in game design, development and QA. Feel free to reach out, I would love to connect.</p>
+                </div>
 
                 <ul class="contact-links">
                     <li>
                         <a href="https://github.com/alfredJoehandsome" target="_blank" rel="noopener noreferrer">
-                            <svg class="icon" aria-hidden="true">
-                                <use href="#icon-github" xlink:href="#icon-github"></use>
-                            </svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-github" xlink:href="#icon-github"></use></svg>
                             GitHub
                         </a>
                     </li>
-
                     <li>
                         <a href="https://www.linkedin.com/in/alfred-johansson-351213204" target="_blank" rel="noopener noreferrer">
-
-                            <svg class="icon" aria-hidden="true">
-                                <use href="#icon-linkedin" xlink:href="#icon-linkedin"></use>
-                            </svg>
+                            <svg class="icon-stroke" aria-hidden="true"><use href="#icon-linkedin" xlink:href="#icon-linkedin"></use></svg>
                             LinkedIn
                         </a>
                     </li>
-
                     <li>
                         <a href="mailto:alfred.karl.jo@gmail.com">
-                            <svg class="icon-stroke" aria-hidden="true">
-                                <use href="#icon-mail" xlink:href="#icon-mail"></use>
-                            </svg>
+                            <svg class="icon-stroke" aria-hidden="true"><use href="#icon-mail" xlink:href="#icon-mail"></use></svg>
                             alfred.karl.jo@gmail.com
                         </a>
                     </li>
-
                 </ul>
 
                 <p class="contact-location">Stockholm, Sweden</p>
             </div>
         </section>
-
-
     </main>
 
     <footer class="footer">
