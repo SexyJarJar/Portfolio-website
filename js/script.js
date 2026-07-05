@@ -429,22 +429,14 @@ if (revealElements.length > 0) {
 })();
 
 // ---------------------------------------------------------
-// Scroll progress bar + navbar hide on scroll down.
+// Navbar hides on scroll down, returns on scroll up.
 // ---------------------------------------------------------
 (function () {
-    const bar = document.getElementById('scroll-progress-bar');
     const navbar = document.querySelector('.navbar');
     let lastScrollY = window.scrollY;
     let ticking = false;
 
     function onScroll() {
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - window.innerHeight;
-        const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
-        if (bar) {
-            bar.style.width = progress + '%';
-        }
-
         if (navbar) {
             const goingDown = window.scrollY > lastScrollY;
             // Only hide once we are past the hero top area, and never
@@ -525,41 +517,5 @@ if (revealElements.length > 0) {
     }, { threshold: 0.4 });
 
     counters.forEach((el) => observer.observe(el));
-})();
-
-// ---------------------------------------------------------
-// Subtle 3D tilt on cards. Pointer position sets custom
-// properties that CSS turns into a perspective rotation.
-// Desktop only, and skipped for reduced motion.
-// ---------------------------------------------------------
-(function () {
-    const reduced = window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-        return;
-    }
-
-    const MAX_TILT = 5; // degrees, kept small so it stays tasteful
-
-    document.querySelectorAll('.tilt').forEach((card) => {
-        card.addEventListener('pointermove', (event) => {
-            // Only tilt for mouse pointers and on wider screens.
-            if (event.pointerType !== 'mouse' || window.innerWidth <= 960) {
-                return;
-            }
-            const rect = card.getBoundingClientRect();
-            const px = (event.clientX - rect.left) / rect.width - 0.5;
-            const py = (event.clientY - rect.top) / rect.height - 0.5;
-            card.style.setProperty('--tilt-y', `${(px * MAX_TILT * 2).toFixed(2)}deg`);
-            card.style.setProperty('--tilt-x', `${(-py * MAX_TILT * 2).toFixed(2)}deg`);
-            card.classList.add('tilt--active');
-        });
-
-        card.addEventListener('pointerleave', () => {
-            card.classList.remove('tilt--active');
-            card.style.removeProperty('--tilt-x');
-            card.style.removeProperty('--tilt-y');
-        });
-    });
 })();
 

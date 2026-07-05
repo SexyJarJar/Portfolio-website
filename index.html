@@ -8,7 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&display=swap"
           rel="stylesheet" />
 
     <link rel="stylesheet" href="css/style.css" />
@@ -52,8 +52,6 @@
         </symbol>
     </svg>
 
-    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
-
     <header class="navbar">
         <div class="container">
             <a class="logo" href="#hero">
@@ -85,14 +83,6 @@
 
     <main>
         <section id="hero" class="hero">
-            <!-- Animated background layers -->
-            <div class="hero-bg" aria-hidden="true">
-                <div class="hero-bg__blob hero-bg__blob--1"></div>
-                <div class="hero-bg__blob hero-bg__blob--2"></div>
-                <div class="hero-bg__blob hero-bg__blob--3"></div>
-                <div class="hero-bg__grid"></div>
-            </div>
-
             <!-- Small glow that trails the cursor in the dark background -->
             <div id="hero-glow" class="hero-glow" aria-hidden="true"></div>
 
@@ -105,6 +95,14 @@
                     <a href="#projects" class="btn">View projects</a>
                     <a href="#resume" class="btn-outline">Resume</a>
                 </div>
+
+                <p class="hero-note">
+                    psst, the shooting stars are clickable
+                    <svg class="hero-note__arrow" viewBox="0 0 56 44" aria-hidden="true">
+                        <path d="M6 8 C 14 30, 32 38, 48 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                        <path d="M40 26 l9 0 -3 -9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </p>
             </div>
 
             <!-- Subtle interactive star layer, scoped to the hero -->
@@ -119,7 +117,7 @@
                 <div class="stats-grid">
                     <div class="stat reveal">
                         <span class="stat-value"><span class="stat-number" data-count="25000" data-suffix="+">0</span></span>
-                        <span class="stat-label">Copies claimed on Steam</span>
+                        <span class="stat-label">Copies claimed on Steam <span class="stat-note">(yes, really)</span></span>
                     </div>
                     <div class="stat reveal">
                         <span class="stat-value"><span class="stat-number" data-count="6">0</span></span>
@@ -146,25 +144,25 @@
                 </div>
 
                 <div class="strength-grid">
-                    <article class="strength-card reveal tilt">
+                    <article class="strength-card reveal">
                         <div class="strength-index">01</div>
                         <h3>Systems &amp; Gameplay Design</h3>
                         <p>I design the systems players actually feel, from climbing and finisher moves to cameras and game feel, then build them in Unity with C#.</p>
                     </article>
 
-                    <article class="strength-card reveal tilt">
+                    <article class="strength-card reveal">
                         <div class="strength-index">02</div>
                         <h3>Team Leadership</h3>
                         <p>I have led teams of 11 and 12 as CTO and team lead. I set the workflow, keep modules integration ready and run sync meetings so people ship.</p>
                     </article>
 
-                    <article class="strength-card reveal tilt">
+                    <article class="strength-card reveal">
                         <div class="strength-index">03</div>
                         <h3>Technical Art &amp; Polish</h3>
                         <p>Lighting, sound, animation timing, cinematic cameras and post production. I make hits land and moments feel good.</p>
                     </article>
 
-                    <article class="strength-card reveal tilt">
+                    <article class="strength-card reveal">
                         <div class="strength-index">04</div>
                         <h3>QA &amp; Playtesting</h3>
                         <p>Structured bug reproduction and clear, actionable feedback. I log, tag and communicate issues so leads can act on them fast.</p>
@@ -173,46 +171,16 @@
             </div>
         </section>
 
-        <!-- Moving tool strip -->
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee__track">
-                <div class="marquee__group">
-                    <span>Unity</span><span class="marquee__dot"></span>
-                    <span>C#</span><span class="marquee__dot"></span>
-                    <span>Game Design</span><span class="marquee__dot"></span>
-                    <span>Team Leadership</span><span class="marquee__dot"></span>
-                    <span>Perforce</span><span class="marquee__dot"></span>
-                    <span>QA &amp; Playtesting</span><span class="marquee__dot"></span>
-                    <span>Technical Art</span><span class="marquee__dot"></span>
-                    <span>Git</span><span class="marquee__dot"></span>
-                    <span>UX / UI</span><span class="marquee__dot"></span>
-                    <span>Scrum</span><span class="marquee__dot"></span>
-                </div>
-                <div class="marquee__group">
-                    <span>Unity</span><span class="marquee__dot"></span>
-                    <span>C#</span><span class="marquee__dot"></span>
-                    <span>Game Design</span><span class="marquee__dot"></span>
-                    <span>Team Leadership</span><span class="marquee__dot"></span>
-                    <span>Perforce</span><span class="marquee__dot"></span>
-                    <span>QA &amp; Playtesting</span><span class="marquee__dot"></span>
-                    <span>Technical Art</span><span class="marquee__dot"></span>
-                    <span>Git</span><span class="marquee__dot"></span>
-                    <span>UX / UI</span><span class="marquee__dot"></span>
-                    <span>Scrum</span><span class="marquee__dot"></span>
-                </div>
-            </div>
-        </div>
-
         <section id="projects" class="projects">
             <div class="container">
                 <div class="section-head">
                     <span class="kicker">Selected work</span>
                     <h2>Projects</h2>
-                    <p class="section-subtitle">Hover any card for the focus, tools and screenshots. Links go to Steam, playable builds and source.</p>
+                    <p class="section-subtitle">Most of these were built with teams of friends from uni. Hover any card for the focus, tools and screenshots.</p>
                 </div>
 
                 <div class="project-grid">
-                    <article class="project-card project-card--featured reveal tilt">
+                    <article class="project-card project-card--featured reveal">
                         <img src="assets/images/project1.png" alt="Murmurs of The Mist screenshot" />
                         <div class="project-info">
                             <h3>Murmurs of The Mist</h3>
@@ -245,7 +213,7 @@
                         </aside>
                     </article>
 
-                    <article class="project-card project-card--featured reveal tilt">
+                    <article class="project-card project-card--featured reveal">
                         <img src="assets/images/PizzaToHell_title.png" alt="Pizza to Hell title art" />
                         <div class="project-info">
                             <h3>Pizza to Hell</h3>
@@ -272,7 +240,7 @@
                         </aside>
                     </article>
 
-                    <article class="project-card reveal tilt">
+                    <article class="project-card reveal">
                         <img src="assets/images/FreakThrowTitleCard.png" alt="FreakThrow Screenshot" />
                         <div class="project-info">
                             <h3>FreakThrow</h3>
@@ -302,7 +270,7 @@
                         </aside>
                     </article>
 
-                    <article class="project-card reveal tilt">
+                    <article class="project-card reveal">
                         <img src="assets/images/project2.png" alt="Mr.Sardin screenshot" />
                         <div class="project-info">
                             <h3>Mr.Sardin</h3>
@@ -332,7 +300,7 @@
                         </aside>
                     </article>
 
-                    <article class="project-card reveal tilt">
+                    <article class="project-card reveal">
                         <img src="assets/images/project3.png" alt="Klara screenshot" />
                         <div class="project-info">
                             <h3>Klara</h3>
@@ -362,7 +330,7 @@
                         </aside>
                     </article>
 
-                    <article class="project-card reveal tilt">
+                    <article class="project-card reveal">
                         <img src="assets/images/AstronovaTitleScreen.png" alt="Astronova Title" />
                         <div class="project-info">
                             <h3>Astronova</h3>
@@ -400,6 +368,7 @@
                 <div class="about-layout">
                     <div class="about-portrait">
                         <img src="assets/images/Picture of me.png" alt="Portrait of Alfred Johansson" />
+                        <span class="portrait-caption">hej!</span>
                     </div>
                     <div class="about-content">
                         <h2>About me</h2>
@@ -534,36 +503,22 @@
                     <p class="section-subtitle">From the people I have shipped games with.</p>
                 </div>
 
-                <!--
-                    PLACEHOLDER QUOTES.
-                    Alfred: replace these with real quotes from teammates or leads.
-                    Each card needs: quote text, name, role + project.
-                -->
                 <div class="testimonial-grid">
                     <figure class="testimonial-card reveal">
                         <svg class="testimonial-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 4C5.9 6.1 3.5 9.6 3.5 13.9c0 3.4 2 6.1 5 6.1 2.5 0 4.4-1.9 4.4-4.3 0-2.3-1.7-4-3.9-4-.4 0-.9.1-1 .1.3-2.3 2.4-5 4.6-6.3L9.6 4zm10.4 0c-3.6 2.1-6 5.6-6 9.9 0 3.4 2 6.1 5 6.1 2.4 0 4.4-1.9 4.4-4.3 0-2.3-1.8-4-4-4-.4 0-.8.1-.9.1.3-2.3 2.3-5 4.5-6.3L20 4z"/></svg>
-                        <blockquote>Placeholder quote. Ask a teammate from Murmurs of the Mist what it was like working with you and put their words here.</blockquote>
+                        <blockquote>You kept us together and focused on getting the work done. You motivated me and made me believe in myself.</blockquote>
                         <figcaption>
-                            <span class="testimonial-name">Teammate name</span>
-                            <span class="testimonial-role">Role · Murmurs of the Mist</span>
+                            <span class="testimonial-name">Anonymous</span>
+                            <span class="testimonial-role">Gameplay Programmer, 7 years experience · Murmurs of the Mist</span>
                         </figcaption>
                     </figure>
 
                     <figure class="testimonial-card reveal">
                         <svg class="testimonial-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 4C5.9 6.1 3.5 9.6 3.5 13.9c0 3.4 2 6.1 5 6.1 2.5 0 4.4-1.9 4.4-4.3 0-2.3-1.7-4-3.9-4-.4 0-.9.1-1 .1.3-2.3 2.4-5 4.6-6.3L9.6 4zm10.4 0c-3.6 2.1-6 5.6-6 9.9 0 3.4 2 6.1 5 6.1 2.4 0 4.4-1.9 4.4-4.3 0-2.3-1.8-4-4-4-.4 0-.8.1-.9.1.3-2.3 2.3-5 4.5-6.3L20 4z"/></svg>
-                        <blockquote>Placeholder quote. A line from someone on the Pizza to Hell team about your leadership or the finisher system works well here.</blockquote>
+                        <blockquote>Your skills, ideas, and way of combining ideas prevented conflict, which made me feel safe and secure.</blockquote>
                         <figcaption>
-                            <span class="testimonial-name">Teammate name</span>
-                            <span class="testimonial-role">Role · Pizza to Hell</span>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="testimonial-card reveal">
-                        <svg class="testimonial-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 4C5.9 6.1 3.5 9.6 3.5 13.9c0 3.4 2 6.1 5 6.1 2.5 0 4.4-1.9 4.4-4.3 0-2.3-1.7-4-3.9-4-.4 0-.9.1-1 .1.3-2.3 2.4-5 4.6-6.3L9.6 4zm10.4 0c-3.6 2.1-6 5.6-6 9.9 0 3.4 2 6.1 5 6.1 2.4 0 4.4-1.9 4.4-4.3 0-2.3-1.8-4-4-4-.4 0-.8.1-.9.1.3-2.3 2.3-5 4.5-6.3L20 4z"/></svg>
-                        <blockquote>Placeholder quote. A quote from a lead at Odd Raven about your QA work would round this out nicely.</blockquote>
-                        <figcaption>
-                            <span class="testimonial-name">Lead name</span>
-                            <span class="testimonial-role">Role · Odd Raven Studios</span>
+                            <span class="testimonial-name">Anonymous</span>
+                            <span class="testimonial-role">Game Designer · Pizza to Hell</span>
                         </figcaption>
                     </figure>
                 </div>
@@ -620,7 +575,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; <span id="year"></span> Alfred Johansson</p>
+            <p>&copy; <span id="year"></span> Alfred Johansson &middot; no template, hand coded in plain HTML, CSS and JS</p>
         </div>
     </footer>
 

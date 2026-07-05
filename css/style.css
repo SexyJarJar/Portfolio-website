@@ -1105,143 +1105,8 @@ h2::after {
 }
 
 /* =========================================================
-   2026 visual upgrade: animated hero, stats, marquee,
-   testimonials, tilt cards, scroll progress.
+   Stats, testimonials and small handmade touches.
    ========================================================= */
-
-/* Scroll progress bar (sits on top of the navbar) */
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    z-index: 1001;
-    background: transparent;
-    pointer-events: none;
-}
-
-.scroll-progress span {
-    display: block;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, var(--red), #e05a4c);
-    box-shadow: 0 0 12px rgba(192, 57, 43, 0.7);
-    transition: width 0.08s linear;
-}
-
-/* Animated hero background: drifting colour blobs + slow grid */
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.hero-bg__blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.5;
-    will-change: transform;
-}
-
-.hero-bg__blob--1 {
-    width: 520px;
-    height: 520px;
-    top: -140px;
-    right: -80px;
-    background: radial-gradient(circle, rgba(192, 57, 43, 0.35), rgba(192, 57, 43, 0) 65%);
-    animation: blob-drift-1 18s ease-in-out infinite alternate;
-}
-
-.hero-bg__blob--2 {
-    width: 420px;
-    height: 420px;
-    bottom: -120px;
-    left: 8%;
-    background: radial-gradient(circle, rgba(90, 60, 160, 0.22), rgba(90, 60, 160, 0) 65%);
-    animation: blob-drift-2 22s ease-in-out infinite alternate;
-}
-
-.hero-bg__blob--3 {
-    width: 340px;
-    height: 340px;
-    top: 30%;
-    left: 45%;
-    background: radial-gradient(circle, rgba(224, 90, 76, 0.16), rgba(224, 90, 76, 0) 65%);
-    animation: blob-drift-3 26s ease-in-out infinite alternate;
-}
-
-@keyframes blob-drift-1 {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(-70px, 60px) scale(1.15); }
-}
-
-@keyframes blob-drift-2 {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(80px, -50px) scale(1.1); }
-}
-
-@keyframes blob-drift-3 {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(-60px, -40px) scale(0.92); }
-}
-
-.hero-bg__grid {
-    position: absolute;
-    inset: -60px;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-    background-size: 56px 56px;
-    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 30%, transparent 75%);
-    mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 30%, transparent 75%);
-    animation: grid-pan 34s linear infinite;
-    will-change: transform;
-}
-
-@keyframes grid-pan {
-    from { transform: translate(0, 0); }
-    to   { transform: translate(56px, 56px); }
-}
-
-/* Shimmering gradient on the name */
-.hero-content h1 .highlight {
-    background: linear-gradient(100deg, #e05a4c 15%, #ff8a75 40%, var(--red) 60%, #e05a4c 85%);
-    background-size: 220% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: name-shimmer 5.5s linear infinite;
-}
-
-@keyframes name-shimmer {
-    to { background-position: -220% center; }
-}
-
-/* Button shine sweep */
-.btn {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -80%;
-    width: 45%;
-    height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.5s ease;
-}
-
-.btn:hover::before {
-    left: 130%;
-}
 
 /* Stats banner */
 .stats {
@@ -1251,18 +1116,6 @@ h2::after {
     padding: 3.4rem 0;
     position: relative;
     overflow: hidden;
-}
-
-.stats::before {
-    content: '';
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 640px;
-    height: 240px;
-    background: radial-gradient(ellipse, rgba(192, 57, 43, 0.12), transparent 70%);
-    pointer-events: none;
 }
 
 .stats-grid {
@@ -1278,11 +1131,7 @@ h2::after {
     font-size: clamp(2rem, 4.5vw, 3.1rem);
     font-weight: 800;
     letter-spacing: -0.01em;
-    background: linear-gradient(180deg, #fff 30%, rgba(255, 255, 255, 0.55));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+    color: #fff;
     line-height: 1.1;
     margin-bottom: 0.35rem;
 }
@@ -1293,60 +1142,6 @@ h2::after {
     color: var(--on-dark-soft);
     max-width: 200px;
     margin: 0 auto;
-}
-
-/* Moving tool strip */
-.marquee {
-    background: var(--bg-deep);
-    border-top: 1px solid var(--line-dark);
-    border-bottom: 1px solid var(--line-dark);
-    overflow: hidden;
-    padding: 1.05rem 0;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-
-.marquee__track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    animation: marquee-scroll 28s linear infinite;
-    will-change: transform;
-}
-
-.marquee__group {
-    display: flex;
-    align-items: center;
-    gap: 2.4rem;
-    padding-right: 2.4rem;
-}
-
-.marquee:hover .marquee__track {
-    animation-play-state: paused;
-}
-
-.marquee__track span {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--on-dark-soft);
-    white-space: nowrap;
-}
-
-.marquee__dot {
-    width: 6px;
-    height: 6px;
-    min-width: 6px;
-    border-radius: 50%;
-    background: var(--red);
-    display: inline-block;
-}
-
-@keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
 }
 
 /* Testimonials */
@@ -1408,20 +1203,6 @@ h2::after {
     margin-top: 0.15rem;
 }
 
-/* 3D tilt cards (values driven from JS) */
-.tilt {
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-.tilt.tilt--active {
-    transform: perspective(900px)
-        rotateX(var(--tilt-x, 0deg))
-        rotateY(var(--tilt-y, 0deg))
-        translateY(-5px);
-    transition: box-shadow var(--transition);
-}
-
 /* Staggered reveals: JS assigns --reveal-delay per element */
 .reveal {
     transition-delay: var(--reveal-delay, 0s);
@@ -1450,20 +1231,107 @@ h2::after {
     }
 }
 
-/* Respect reduced motion for every new effect */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .hero-bg__blob,
-    .hero-bg__grid,
-    .hero-content h1 .highlight,
-    .marquee__track {
-        animation: none;
-    }
-
-    .tilt.tilt--active {
-        transform: none;
-    }
-
     .reveal {
         transition: none;
+    }
+}
+
+/* =========================================================
+   Handmade touches: handwritten notes, taped photos.
+   ========================================================= */
+
+/* Handwritten note in the hero pointing at the star minigame */
+.hero-note {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    transform: rotate(-2deg);
+    user-select: none;
+}
+
+.hero-note__arrow {
+    width: 44px;
+    height: 34px;
+    margin-top: 0.4rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* About portrait: taped-up photo instead of a floating card */
+.about-portrait {
+    transform: rotate(-2deg);
+    border: 6px solid #fff;
+    border-radius: 4px;
+    overflow: visible;
+}
+
+.about-portrait::after {
+    /* replace the old red square with a strip of tape */
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    bottom: auto;
+    width: 92px;
+    height: 26px;
+    background: rgba(240, 238, 234, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 2px;
+    transform: translateX(-50%) rotate(3deg);
+    z-index: 2;
+}
+
+.about-portrait img {
+    border-radius: 2px;
+}
+
+.portrait-caption {
+    position: absolute;
+    bottom: -2.4rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+}
+
+/* Popover screenshots styled like small taped-in photos */
+.project-popover__images img {
+    border: 3px solid #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.project-popover__images img:nth-child(odd) {
+    transform: rotate(-1.6deg);
+}
+
+.project-popover__images img:nth-child(even) {
+    transform: rotate(1.4deg);
+}
+
+/* Featured badge sits slightly crooked, like a sticker */
+.project-card--featured::after {
+    transform: rotate(-3deg);
+}
+
+/* Small aside note in the stats */
+.stat-note {
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+}
+
+@media (max-width: 960px) {
+    .about-portrait {
+        margin-bottom: 2.2rem;
     }
 }
