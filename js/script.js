@@ -60,6 +60,22 @@ if (yearSpan) {
     yearSpan.textContent = now.getFullYear();
 }
 
+// ---------------------------------------------------------
+// Staggered scroll reveals: siblings inside the same grid get
+// a small incremental delay so cards cascade in.
+// ---------------------------------------------------------
+(function () {
+    const groups = document.querySelectorAll(
+        '.strength-grid, .project-grid, .stats-grid, .testimonial-grid, .exp-list'
+    );
+    groups.forEach((group) => {
+        const items = group.querySelectorAll('.reveal');
+        items.forEach((el, i) => {
+            el.style.setProperty('--reveal-delay', `${Math.min(i * 0.09, 0.45)}s`);
+        });
+    });
+})();
+
 const revealElements = document.querySelectorAll('.reveal');
 
 if (revealElements.length > 0) {
@@ -68,8 +84,16 @@ if (revealElements.length > 0) {
             (entries, obs) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        obs.unobserve(entry.target);
+                        const el = entry.target;
+                        el.classList.add('in-view');
+                        obs.unobserve(el);
+                        // Once the reveal transition has finished, drop the
+                        // reveal classes so they no longer override hover and
+                        // tilt transitions on the same element.
+                        window.setTimeout(() => {
+                            el.classList.remove('reveal', 'in-view');
+                            el.style.removeProperty('--reveal-delay');
+                        }, 1300);
                     }
                 });
             },
@@ -401,6 +425,141 @@ if (revealElements.length > 0) {
 
     hero.addEventListener('pointerleave', () => {
         glow.style.opacity = '0';
+    });
+})();
+
+// ---------------------------------------------------------
+// Scroll progress bar + navbar hide on scroll down.
+// ---------------------------------------------------------
+(function () {
+    const bar = document.getElementById('scroll-progress-bar');
+    const navbar = document.querySelector('.navbar');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function onScroll() {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+        if (bar) {
+            bar.style.width = progress + '%';
+        }
+
+        if (navbar) {
+            const goingDown = window.scrollY > lastScrollY;
+            // Only hide once we are past the hero top area, and never
+            // while the mobile menu is open.
+            const menuOpen = document.querySelector('.nav-links.active');
+            if (goingDown && window.scrollY > 320 && !menuOpen) {
+                navbar.classList.add('navbar--hidden');
+            } else if (!goingDown) {
+                navbar.classList.remove('navbar--hidden');
+            }
+        }
+        lastScrollY = window.scrollY;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(onScroll);
+        }
+    }, { passive: true });
+
+    onScroll();
+})();
+
+// ---------------------------------------------------------
+// Animated stat counters. Count up with ease-out when the
+// stats band scrolls into view. Skipped for reduced motion.
+// ---------------------------------------------------------
+(function () {
+    const counters = document.querySelectorAll('.stat-number');
+    if (counters.length === 0) {
+        return;
+    }
+
+    const reduced = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function formatNumber(value) {
+        // Matches the "25,000+" style already used in the copy.
+        return value.toLocaleString('en-US');
+    }
+
+    function setFinal(el) {
+        const target = parseInt(el.dataset.count, 10) || 0;
+        el.textContent = formatNumber(target) + (el.dataset.suffix || '');
+    }
+
+    function animateCounter(el) {
+        const target = parseInt(el.dataset.count, 10) || 0;
+        const suffix = el.dataset.suffix || '';
+        const duration = 1600;
+        const start = performance.now();
+
+        function tick(now) {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+            el.textContent = formatNumber(Math.round(target * eased)) + suffix;
+            if (t < 1) {
+                requestAnimationFrame(tick);
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    if (reduced || !('IntersectionObserver' in window)) {
+        counters.forEach(setFinal);
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    counters.forEach((el) => observer.observe(el));
+})();
+
+// ---------------------------------------------------------
+// Subtle 3D tilt on cards. Pointer position sets custom
+// properties that CSS turns into a perspective rotation.
+// Desktop only, and skipped for reduced motion.
+// ---------------------------------------------------------
+(function () {
+    const reduced = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+        return;
+    }
+
+    const MAX_TILT = 5; // degrees, kept small so it stays tasteful
+
+    document.querySelectorAll('.tilt').forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+            // Only tilt for mouse pointers and on wider screens.
+            if (event.pointerType !== 'mouse' || window.innerWidth <= 960) {
+                return;
+            }
+            const rect = card.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width - 0.5;
+            const py = (event.clientY - rect.top) / rect.height - 0.5;
+            card.style.setProperty('--tilt-y', `${(px * MAX_TILT * 2).toFixed(2)}deg`);
+            card.style.setProperty('--tilt-x', `${(-py * MAX_TILT * 2).toFixed(2)}deg`);
+            card.classList.add('tilt--active');
+        });
+
+        card.addEventListener('pointerleave', () => {
+            card.classList.remove('tilt--active');
+            card.style.removeProperty('--tilt-x');
+            card.style.removeProperty('--tilt-y');
+        });
     });
 })();
 
